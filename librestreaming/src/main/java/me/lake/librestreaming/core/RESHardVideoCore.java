@@ -240,6 +240,7 @@ public class RESHardVideoCore implements RESVideoCore {
         private ShortBuffer drawIndecesBuffer;
         private BaseHardVideoFilter innerVideoFilter = null;
         private RESFrameRateMeter drawFrameRateMeter;
+        private int directionFlag;
 
         VideoGLThread(SurfaceTexture camTexture, Surface inputSuface, int cameraIndex) {
             screenCleaned = false;
@@ -259,13 +260,12 @@ public class RESHardVideoCore implements RESVideoCore {
         public void updateCameraIndex(int cameraIndex) {
             synchronized (syncCameraTextureVerticesBuffer) {
                 currCamera = cameraIndex;
-                int directionFlag;
                 if (currCamera == Camera.CameraInfo.CAMERA_FACING_FRONT) {
                     directionFlag = resCoreParameters.frontCameraDirectionMode;
                 } else {
                     directionFlag = resCoreParameters.backCameraDirectionMode;
                 }
-                camera2dTextureVerticesBuffer = GLHelper.getCamera2DTextureVerticesBuffer(directionFlag);
+                camera2dTextureVerticesBuffer = GLHelper.getCamera2DTextureVerticesBuffer(directionFlag,resCoreParameters.cropRatio);
             }
         }
 
@@ -419,6 +419,7 @@ public class RESHardVideoCore implements RESVideoCore {
                 }
                 if (innerVideoFilter != null) {
                     synchronized (syncCameraTextureVerticesBuffer) {
+                        innerVideoFilter.onDirectionUpdate(directionFlag);
                         innerVideoFilter.onDraw(sample2DFrameBufferTexture, frameBuffer, shapeVerticesBuffer, cameraTextureVerticesBuffer);
                     }
                 } else {

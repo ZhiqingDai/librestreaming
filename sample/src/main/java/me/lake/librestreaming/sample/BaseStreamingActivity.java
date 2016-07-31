@@ -107,7 +107,7 @@ public class BaseStreamingActivity extends AppCompatActivity implements RESConne
             return;
         }
         Size s = resClient.getVideoSize();
-        txv_preview.setAspectRatio(AspectTextureView.MODE_OUTSIDE, ((double) s.getWidth()) / s.getHeight());
+        txv_preview.setAspectRatio(AspectTextureView.MODE_INSIDE, ((double) s.getWidth()) / s.getHeight());
         Log.d(TAG, "version=" + resClient.getVertion());
         resClient.setConnectionListener(this);
         btn_toggle = (Button) findViewById(R.id.btn_toggle);
