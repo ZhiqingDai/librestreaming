@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Start" />
+                android:text="开始" />
 
             <Button
                 android:id="@+id/btn_swap"
@@ -38,21 +38,21 @@
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Swap" />
+                android:text="切换" />
             <Button
                 android:id="@+id/btn_flash"
                 android:layout_height="0px"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Flash" />
+                android:text="闪光灯" />
             <Button
                 android:id="@+id/btn_screenshot"
                 android:layout_height="0px"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Screenshot" />
+                android:text="截图" />
         </LinearLayout>
 
         <FrameLayout
@@ -84,8 +84,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
                     android:textColor="@android:color/white"
-                    android:text="volume"/>
+                    android:text="音量"/>
                 <SeekBar
                     android:id="@+id/sb_volume"
                     android:layout_width="match_parent"

@@ -257,10 +257,10 @@ public class BaseStreamingActivity extends AppCompatActivity implements RESConne
         switch (v.getId()) {
             case R.id.btn_toggle:
                 if (!started) {
-                    btn_toggle.setText("stop");
+                    btn_toggle.setText("停止");
                     resClient.start();
                 } else {
-                    btn_toggle.setText("start");
+                    btn_toggle.setText("开始");
                     resClient.stop();
                 }
                 started = !started;

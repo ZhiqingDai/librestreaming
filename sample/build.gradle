@@ -41,5 +41,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.0'
     compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
+    compile 'com.anthonycr.grant:permissions:1.0'
     compile project(':librestreaming')
 }

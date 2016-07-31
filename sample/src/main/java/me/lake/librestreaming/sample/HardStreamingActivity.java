@@ -55,40 +55,41 @@ public class HardStreamingActivity extends BaseStreamingActivity {
          * filters just for demo
          */
         ArrayList<FilterItem> filterItems = new ArrayList<>();
-        filterItems.add(new FilterItem("NoFilter", null));
-        filterItems.add(new FilterItem("DoNothing", new OriginalHardVideoFilter(null, null)));
-        filterItems.add(new FilterItem("FishEye", new FishEyeFilterHard()));
-        filterItems.add(new FilterItem("SkinBlur", new SkinBlurHardVideoFilter(2)));
-        filterItems.add(new FilterItem("Whitening", new WhiteningHardVideoFilter()));
-        filterItems.add(new FilterItem("ColorMix", new ColorMixHardFilter(0.98f, 0.72f, 0.82f, 0.3f)));
+        filterItems.add(new FilterItem("无", null));
+//        filterItems.add(new FilterItem("DoNothing", new OriginalHardVideoFilter(null, null)));
+//        filterItems.add(new FilterItem("FishEye", new FishEyeFilterHard()));
+        filterItems.add(new FilterItem("磨皮", new SkinBlurHardVideoFilter(2)));
+        filterItems.add(new FilterItem("美白", new WhiteningHardVideoFilter()));
+        filterItems.add(new FilterItem("颜色", new ColorMixHardFilter(0.98f, 0.72f, 0.82f, 0.3f)));
         LinkedList<BaseHardVideoFilter> filters = new LinkedList<>();
         filters.add(new SkinBlurHardVideoFilter(2));
         filters.add(new WhiteningHardVideoFilter());
-        filterItems.add(new FilterItem("FacialUp", new HardVideoGroupFilter(filters)));
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-        filterItems.add(new FilterItem("NormalBlend", new TowInputFilterHard(null, null, bitmap)));
-        filters = new LinkedList<>();
-        filters.add(new SobelEdgeDetectionHardVideoFilter());
-        filters.add(new FishEyeFilterHard());
-        filterItems.add(new FilterItem("GroupFilter", new HardVideoGroupFilter(filters)));
-        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-        filterItems.add(new FilterItem("DifferenceBlend", new DifferenceBlendFilterHard(bitmap)));
-        filterItems.add(new FilterItem("SobelEdgeDetection", new SobelEdgeDetectionHardVideoFilter()));
-        filterItems.add(new FilterItem("gpuimage:Invert", new GPUImageCompatibleFilter<GPUImageColorInvertFilter>(new GPUImageColorInvertFilter())));
-        filterItems.add(new FilterItem("gpuimage:Pixelation", new GPUImageCompatibleFilter<GPUImagePixelationFilter>(new GPUImagePixelationFilter())));
-        GPUImage3x3ConvolutionFilter tmp = new GPUImage3x3ConvolutionFilter();
-        tmp.setConvolutionKernel(new float[]{
-                -1.0f, 0.0f, 1.0f,
-                -2.0f, 0.0f, 2.0f,
-                -1.0f, 0.0f, 1.0f
-        });
-        filterItems.add(new FilterItem("gpuimage:3x3Convolution", new GPUImageCompatibleFilter<GPUImage3x3ConvolutionFilter>(tmp)));
-        LinkedList<BaseHardVideoFilter> sketchfilters = new LinkedList<>();
-        sketchfilters.add(new GPUImageCompatibleFilter<GPUImageGrayscaleFilter>(new GPUImageGrayscaleFilter()));
-        sketchfilters.add(new GPUImageCompatibleFilter<GPUImage3x3TextureSamplingFilter>(new GPUImage3x3TextureSamplingFilter(SKETCH_FRAGMENT_SHADER)));
-        filterItems.add(new FilterItem("gpuimage:SketchGroup", new HardVideoGroupFilter(sketchfilters)));
-        filterItems.add(new FilterItem("gpuimage:CGAColor", new GPUImageCompatibleFilter<GPUImageCGAColorspaceFilter>(new GPUImageCGAColorspaceFilter())));
-        filterItems.add(new FilterItem("gpuimage:Crosshatch", new GPUImageCompatibleFilter<GPUImageCrosshatchFilter>(new GPUImageCrosshatchFilter())));
+        filterItems.add(new FilterItem("磨皮+美白", new HardVideoGroupFilter(filters)));
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
+        filterItems.add(new FilterItem("图片纹理", new TowInputFilterHard(null, null, bitmap)));
+//
+//        filters = new LinkedList<>();
+//        filters.add(new SobelEdgeDetectionHardVideoFilter());
+//        filters.add(new FishEyeFilterHard());
+//        filterItems.add(new FilterItem("GroupFilter", new HardVideoGroupFilter(filters)));
+//        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
+//        filterItems.add(new FilterItem("DifferenceBlend", new DifferenceBlendFilterHard(bitmap)));
+//        filterItems.add(new FilterItem("SobelEdgeDetection", new SobelEdgeDetectionHardVideoFilter()));
+//        filterItems.add(new FilterItem("gpuimage:Invert", new GPUImageCompatibleFilter<GPUImageColorInvertFilter>(new GPUImageColorInvertFilter())));
+//        filterItems.add(new FilterItem("gpuimage:Pixelation", new GPUImageCompatibleFilter<GPUImagePixelationFilter>(new GPUImagePixelationFilter())));
+//        GPUImage3x3ConvolutionFilter tmp = new GPUImage3x3ConvolutionFilter();
+//        tmp.setConvolutionKernel(new float[]{
+//                -1.0f, 0.0f, 1.0f,
+//                -2.0f, 0.0f, 2.0f,
+//                -1.0f, 0.0f, 1.0f
+//        });
+//        filterItems.add(new FilterItem("gpuimage:3x3Convolution", new GPUImageCompatibleFilter<GPUImage3x3ConvolutionFilter>(tmp)));
+//        LinkedList<BaseHardVideoFilter> sketchfilters = new LinkedList<>();
+//        sketchfilters.add(new GPUImageCompatibleFilter<GPUImageGrayscaleFilter>(new GPUImageGrayscaleFilter()));
+//        sketchfilters.add(new GPUImageCompatibleFilter<GPUImage3x3TextureSamplingFilter>(new GPUImage3x3TextureSamplingFilter(SKETCH_FRAGMENT_SHADER)));
+//        filterItems.add(new FilterItem("gpuimage:SketchGroup", new HardVideoGroupFilter(sketchfilters)));
+//        filterItems.add(new FilterItem("gpuimage:CGAColor", new GPUImageCompatibleFilter<GPUImageCGAColorspaceFilter>(new GPUImageCGAColorspaceFilter())));
+//        filterItems.add(new FilterItem("gpuimage:Crosshatch", new GPUImageCompatibleFilter<GPUImageCrosshatchFilter>(new GPUImageCrosshatchFilter())));
         filterAdapter = new FilterAdapter();
         filterAdapter.updateFilters(filterItems);
         lv_filter.setAdapter(filterAdapter);

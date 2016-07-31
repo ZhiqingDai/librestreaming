@@ -68,6 +68,8 @@ public class TowInputFilterHard extends BaseHardVideoFilter {
     public void onInit(int VWidth, int VHeight) {
         super.onInit(VWidth, VHeight);
         imageTexture = GLESTools.loadTexture(image, GLESTools.NO_TEXTURE);
+
+
         glProgram = GLESTools.createProgram(vertexShader_filter, fragmentshader_filter);
         GLES20.glUseProgram(glProgram);
         glCamTextureLoc = GLES20.glGetUniformLocation(glProgram, "uCamTexture");
@@ -91,6 +93,7 @@ public class TowInputFilterHard extends BaseHardVideoFilter {
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, cameraTexture);
         GLES20.glUniform1i(glCamTextureLoc, 0);
         GLES20.glActiveTexture(GLES20.GL_TEXTURE1);
+        //绑定纹理
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, imageTexture);
         GLES20.glUniform1i(glImageTextureLoc, 1);
         GLES20.glEnableVertexAttribArray(glCamPostionLoc);

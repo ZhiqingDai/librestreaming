@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:text="rtmp://115.159.110.31:1935/his/test2"
             android:hint="RtmpAddr"/>
 
         <RadioGroup
@@ -30,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="land"
+                android:text="横屏"
                 android:textSize="18sp" />
 
             <RadioButton
@@ -39,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="port"
+                android:text="竖屏"
                 android:textSize="18sp" />
         </RadioGroup>
 
@@ -56,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
+                android:visibility="gone"
                 android:text="soft"
                 android:textSize="18sp" />
 
@@ -65,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="hard(gles)"
+                android:text="GPU硬模式(gles)"
                 android:textSize="18sp" />
         </RadioGroup>
 
@@ -75,10 +77,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:padding="30dp"
-            android:text="start"
+            android:text="开始"
             android:textSize="20sp" />
 
         <TextView
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:autoLink="web"
@@ -86,6 +89,7 @@
             android:text="@string/url" />
 
         <TextView
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/introduction" />

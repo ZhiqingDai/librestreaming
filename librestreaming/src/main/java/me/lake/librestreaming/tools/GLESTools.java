@@ -84,23 +84,37 @@ public class GLESTools {
     public static int loadTexture(final Bitmap image, final int reUseTexture) {
         int[] texture = new int[1];
         if (reUseTexture == NO_TEXTURE) {
+            //创建纹理
             GLES20.glGenTextures(1, texture, 0);
+            //绑定要使用的纹理
             GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texture[0]);
+
+            //下面是纹理贴图的取样方式，包括拉伸方式，取临近值和线性值
+            //设置MAG时为线性采样
             GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D,
                     GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);
+            //设置MIN时为最近采样
             GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D,
-                    GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
+                    GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_NEAREST);
+            //设置S轴的拉伸方式为截取
             GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D,
                     GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_CLAMP_TO_EDGE);
+            //设置T轴的拉伸方式为截取
             GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D,
                     GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_CLAMP_TO_EDGE);
+            //生成图片2D纹理，让图片与纹理关联
             GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, image, 0);
+            //绑定要使用的纹理
             GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
+
         } else {
             GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, reUseTexture);
             GLUtils.texSubImage2D(GLES20.GL_TEXTURE_2D, 0, 0, 0, image);
             texture[0] = reUseTexture;
         }
+//        if(!image.isRecycled()){
+//            image.recycle();
+//        }
         return texture[0];
     }
 
